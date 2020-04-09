@@ -24,6 +24,8 @@ public:
 // Out: an object of type Cookie that contains the given info
 	Cookie(int id, const char*n, const char*i, double p);
 
+	Cookie(const Cookie& c);
+
 // Desonstructor
 // In: an object of type Cookie
 // Out: -

@@ -1,29 +1,53 @@
 #include "Repo.h"
+#include<fstream>
 
-Repo::Repo() {
+Repo::Repo() 
+{
 }
-Repo::~Repo() {
+
+Repo::~Repo() 
+{
+	this->cookies.clear();
 }
 
 
 int Repo::getSize()
 {
-	return this->cookies.getSize();
+	return this->cookies.size();
 }
 
 void Repo::addCookie(const Cookie c)
 {
-	this->cookies.addElem(c);
+	this->cookies.push_back(c);
 }
-void Repo::delCookie(int pos)
+
+vector <Cookie> Repo::getCookies()
 {
-	this->cookies.deleteElem(pos);
+	return this->cookies;
 }
-void Repo::updateCookie(int pos, const Cookie& c)
+
+Cookie Repo::getCookie(int pos)
 {
-	this->cookies.deleteElem(pos);
+	return this->cookies[pos];
 }
-Cookie Repo::getCookieByPos(int pos)
+
+void Repo::updateCookie(Cookie& oldCookie, Cookie& newCookie)
 {
-	return this->cookies.getElemPos(pos);
+	for (int i = 0; i < this->cookies.size(); i++)
+	{
+		if (this->cookies[i] == oldCookie)
+			this->cookies[i] =  newCookie;
+	}
+}
+
+void Repo::deleteCookie(Cookie& c)
+{
+	for (int i = 0; i < this->cookies.size(); i++)
+	{
+		if (this->cookies[i] == c)
+		{
+			this->cookies[i] = this->cookies[this->cookies.size() - 1];
+			this->cookies.pop_back();
+		}
+	}
 }

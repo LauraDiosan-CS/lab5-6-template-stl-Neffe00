@@ -21,6 +21,19 @@ Cookie::Cookie(int id, const char* n, const char* i, double p)
 	this->price = p;
 }
 
+Cookie:: Cookie(const Cookie& c)
+{
+	this->id = id;
+
+	this->name = new char[strlen(c.name) + 1];
+	strcpy_s(this->name, 1 + strlen(c.name), c.name);
+
+	this->ingredients = new char[strlen(c.ingredients) + 1];
+	strcpy_s(this->ingredients, 1 + strlen(c.ingredients), c.ingredients);
+
+	this->price = price;
+}
+
 Cookie::~Cookie()
 {
 	if (this->name != NULL)
